@@ -14,9 +14,9 @@ Tahap 2: Pengaitan URL
 https://arsiparis-web.vercel.app/api/render?drive=URL_GOOGLE_DRIVE&asli=URL_ASLI   --   Perhatikan posisi URL_GOOGLE_DRIVE dan URL_ASLI
 
 Contoh:
-URL Google Drive: WWW.DRIVE.GOOGLE.COM/AAA
-URL Asli: WWW.FACEBOOK.COM/BBB
-Hasilnya: = https://arsiparis-web.vercel.app/api/render?drive=WWW.DRIVE.GOOGLE.COM/AAA&asli=WWW.FACEBOOK.COM/BBB
+- URL Google Drive: WWW.DRIVE.GOOGLE.COM/AAA
+- URL Asli: WWW.FACEBOOK.COM/BBB
+- Hasilnya: = https://arsiparis-web.vercel.app/api/render?drive=WWW.DRIVE.GOOGLE.COM/AAA&asli=WWW.FACEBOOK.COM/BBB
 
 Rekomendasi: untuk penggunaan pada banyak URL buatlah tabel berisi kolom url asli, url file di Google Drive, lalu kolom hasil menggunakan format/rumus Excel/Spreadsheet untuk generate URL arsip.
 
