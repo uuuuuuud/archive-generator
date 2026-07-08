@@ -90,7 +90,7 @@ export default async function handler(req, res) {
                     <div class="brand">🚀 ARSIP WEBSITE</div>
                     <div>
                         <a href="${decodeURIComponent(asli || '')}" target="_blank" class="btn" style="${asli ? '' : 'display:none;'}">Menuju Tautan Langsung</a>
-                        <a href="https://github.com/uuuuuuud/archive-generator" target="_blank" class="btn">Gunakan Layanan Ini (Via GitHub)</a>
+                        <a href="https://github.com/uuuuuuud/archive-generator" target="_blank" class="btn">Arsipkan Web (Single File)</a>
                     </div>
                 </div>
                 <div class="content-container">
