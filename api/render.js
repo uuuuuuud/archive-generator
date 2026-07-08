@@ -92,7 +92,7 @@ export default async function handler(req, res) {
                     </div>
                     <div>
                         <a href="${decodeURIComponent(asli || '')}" target="_blank" class="btn" style="${asli ? '' : 'display:none;'}">Menuju Tautan Langsung</a>
-                        <a href="https://github.com/uuuuuuud/archive-generator" target="_blank" class="btn">Arsipkan Web (Single File)</a>
+                        <a href="https://arsiparis-web.vercel.app/" target="_blank" class="btn">Arsipkan Web (G Drive)</a>
                     </div>
                 </div>
                 <div class="content-container">
