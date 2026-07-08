@@ -3,130 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generator URL - ARSIPARIS WEB</title>
+    
+    <title>Generator URL - ARSIPARIS WEB | Alat Arsip Web & Medsos Gratis</title>
+    <meta name="description" content="Cara arsip web gratis dan praktis lewat Google Drive. Alternatif arsipkan website gratis untuk bukti digital.">
+    <meta name="keywords" content="arsip web gratis, arsip medsos gratis, arsip facebook gratis, arsip tiktok gratis, arsip X gratis, arsip twitter gratis, arsip instagram gartis, arsip threads gratis, cara arsip web google drive, cara arsip web gratis, bagaimana arsipkan web secara gratis, alternatif arsipkan website gratis">
+    <meta name="robots" content="index, follow">
+    
     <style>
-        /* TEMA: Latar belakang abu-abu terang, teks petunjuk warna gelap */
-        body { 
-            font-family: system-ui, sans-serif; 
-            background-color: #f1f2f6; /* Abu-abu terang netral */
-            color: #2f3542; /* Teks utama warna gelap */
-            margin: 0; 
-            padding: 20px; 
+        /* TEMA & LAYOUT UTAMA */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, sans-serif;
+            background-color: #f1f2f6; /* Latar belakang abu-abu terang */
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 90vh;
         }
+
         .container { 
             width: 100%;
             max-width: 850px; 
+            height: 100vh; /* Stabil Full Atas Bawah */
             background: #ffffff; /* Kotak putih bersih */
-            padding: 30px; 
-            border-radius: 8px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-            border-top: 5px solid #ff793f; /* Aksen oranye di atas */
-            border-bottom: 4px solid #b33939; /* Aksen oranye tua di bawah */
+            border-top: 5px solid #ff793f; 
+            border-bottom: 5px solid #b33939; 
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 30px;
+            position: relative;
         }
+
+        /* JUDUL DI TENGAH */
         h1 { 
-            margin-top: 0; 
-            color: #ff5252; /* Oranye Terang Kontras */
+            margin-top: 5px; 
+            margin-bottom: 5px;
+            color: #ff5252; 
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 900;
+            text-align: center; /* Judul Taruh Tengah */
+            font-size: 22px;
         }
-        p { 
-            color: #2f3542; /* Keterangan petunjuk warna gelap tegas */
-            font-size: 15px; 
+
+        p.petunjuk { 
+            color: #2f3542; 
+            font-size: 13px; 
             font-weight: 500;
-            line-height: 1.5;
+            line-height: 1.4;
+            text-align: center;
+            margin-bottom: 15px;
         }
+
+        /* SCROLLER INTERNAL UNTUK KOLOM INPUT */
+        .scroll-area {
+            flex: 1;
+            overflow-y: auto; /* Scroller ke bawah terus jika banyak kolom */
+            padding-right: 5px;
+            margin-bottom: 15px;
+        }
+
+        /* RASIO UKURAN DIKURANGI AGAR ESTETIS */
         .row-input { 
             display: flex; 
-            gap: 10px; 
-            margin-bottom: 12px; 
+            gap: 8px; 
+            margin-bottom: 10px; 
             align-items: center; 
         }
+
         .row-number {
             font-weight: bold;
             color: #2f3542;
-            min-width: 25px;
+            min-width: 22px;
             text-align: center;
+            font-size: 13px;
         }
+
         input { 
             flex: 1; 
-            padding: 12px; 
+            padding: 8px 12px; /* Ukuran dikurangi sedikit */
             border: 2px solid #ced4da; 
-            border-radius: 6px; 
-            font-size: 14px; 
+            border-radius: 5px; 
+            font-size: 13px; 
             background-color: #ffffff;
             color: #2f3542;
         }
-        input::placeholder {
-            color: #a4b0be;
-        }
+
         input:focus {
             outline: none;
             border-color: #ff793f;
         }
-        /* TOMBOL UTAMA: Tetap Oranye Jingga */
+
+        /* STRUKTUR TOMBOL SEJAJAR & STATIS (TIDAK IKUT TENGGELAM) */
+        .action-area {
+            background: #ffffff;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between; /* Saling berjauhan kiri & kanan */
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
         button { 
-            background-color: #ff793f; 
             color: white; 
-            border: 1px solid #cd6133; 
-            padding: 12px 24px; 
+            border: none;
+            padding: 10px 18px; /* Ukuran tombol dikurangi sedikit */
             font-weight: bold; 
-            border-radius: 6px; 
+            border-radius: 5px; 
             cursor: pointer; 
-            font-size: 14px; 
+            font-size: 13px; 
             transition: 0.2s;
         }
-        button:hover { 
-            background-color: #cd6133; 
-            border-color: #b33939;
-        }
+
+        /* Tambah Kolom Sebelah Kiri (Arah Pengguna) */
         .btn-add { 
             background-color: #747d8c; 
-            border-color: #57606f;
-            margin-bottom: 20px; 
         }
         .btn-add:hover { 
             background-color: #57606f; 
         }
+
+        /* Konversi Sebelah Kanan */
+        .btn-submit {
+            background-color: #ff793f; 
+        }
+        .btn-submit:hover {
+            background-color: #cd6133;
+        }
+
         .btn-del { 
             background-color: #b33939; 
-            border-color: #8c2626;
-            padding: 12px; 
+            padding: 8px 12px;
+            font-size: 12px;
         }
         .btn-del:hover { 
             background-color: #8c2626; 
         }
+
+        /* AREA OUTPUT */
         #output-container { 
-            margin-top: 30px; 
+            margin-top: 10px; 
             display: none; 
         }
+
         textarea { 
             width: 100%; 
-            height: 180px; 
-            padding: 12px; 
+            height: 100px; 
+            padding: 10px; 
             border: 2px solid #ff793f; 
-            border-radius: 6px; 
+            border-radius: 5px; 
             font-family: monospace; 
-            font-size: 13px; 
+            font-size: 12px; 
             box-sizing: border-box; 
             background-color: #f1f2f6;
             color: #b33939;
             font-weight: bold;
         }
+
+        /* POPUP DI POJOK KANAN BAWAH (DI LUAR KOTAK PUTIH) */
+        .floating-popup {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background-color: #2f3542;
+            color: #ffffff;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 9999;
+            border-left: 3px solid #ff793f;
+        }
+        .floating-popup a {
+            color: #ff793f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .floating-popup a:hover {
+            text-decoration: underline;
+        }
+
+        /* SEO Tag Tersembunyi Efektif untuk Bot Google */
+        .seo-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
     </style>
 </head>
 <body>
 
+<header class="seo-hidden">
+    <h2>Cara arsip web google drive dan bagaimana arsipkan web secara gratis</h2>
+    <p>Alternatif arsipkan website gratis menggunakan sistem Arsiparis Web. Mendukung arsip web gratis, arsip medsos gratis, arsip facebook gratis, arsip tiktok gratis, arsip X gratis, arsip twitter gratis, arsip instagram gartis, arsip threads gratis.</p>
+</header>
+
 <div class="container">
     <h1>🚀 Generator URL Arsiparis</h1>
-    <p>Petunjuk: Masukkan pasangan URL secara massal pada kolom yang tersedia di bawah ini untuk menghasilkan tautan arsip instan secara berurutan tanpa memerlukan rumus Spreadsheet lagi.</p>
+    <p class="petunjuk">Petunjuk: Masukkan pasangan URL secara massal pada kolom di bawah untuk generate link arsip instan secara otomatis.</p>
     
-    <div id="input-fields">
+    <div class="scroll-area" id="input-fields">
         <div class="row-input">
             <span class="row-number">1.</span>
             <input type="text" class="url-asli" placeholder="Masukkan URL Asli (contoh: WWW.FACEBOOK.COM/BBB)">
@@ -135,15 +219,19 @@
         </div>
     </div>
 
-    <button type="button" class="btn-add" onclick="tambahBaris()">+ Tambah Baris Pasangan</button>
-    <br>
-    <button type="button" onclick="generateURL()">Konversi ke URL Arsip</button>
+    <div class="action-area">
+        <button type="button" class="btn-add" onclick="tambahBaris()">+ Tambah Baris Pasangan</button>
+        <button type="button" class="btn-submit" onclick="generateURL()">Konversi ke URL Arsip</button>
+    </div>
 
     <div id="output-container">
-        <h3 style="color: #ff5252; margin-bottom: 5px;">📋 Hasil Konversi Berurutan:</h3>
-        <p style="margin-top: 0; font-size: 14px;">Klik di dalam kotak lalu salin semua hasil tautan di bawah ini:</p>
+        <h3 style="color: #ff5252; margin: 5px 0; font-size: 14px;">📋 Hasil Konversi Berurutan:</h3>
         <textarea id="output-text" readonly onclick="this.select()"></textarea>
     </div>
+</div>
+
+<div class="floating-popup">
+    Keterangan lebih lanjut tentang layanan ini: <a href="https://github.com/uuuuuuud/archive-generator" target="_blank">GitHub uuuuuuud</a>
 </div>
 
 <script>
@@ -159,6 +247,10 @@
         `;
         container.appendChild(div);
         urutkanNomorBaris();
+        
+        // Otomatis scroll ke kolom paling baru di bagian bawah saat ditambah
+        const scrollArea = document.getElementById('input-fields');
+        scrollArea.scrollTop = scrollArea.scrollHeight;
     }
 
     function hapusBaris(btn) {
@@ -169,10 +261,7 @@
     function urutkanNomorBaris() {
         const rows = document.querySelectorAll('.row-input');
         rows.forEach((row, index) => {
-            // Set nomor urut input otomatis
             row.querySelector('.row-number').innerText = (index + 1) + ".";
-            
-            // Atur tombol hapus agar tidak muncul jika hanya tersisa 1 baris
             const delBtn = row.querySelector('.btn-del');
             delBtn.style.display = rows.length === 1 ? 'none' : 'block';
         });
@@ -188,7 +277,6 @@
             const drive = row.querySelector('.url-drive').value.trim();
 
             if (asli && drive) {
-                // Menyusun hasil konversi dengan nomor urut di depannya
                 hasil += `${nomorUrut}. https://arsiparis-web.vercel.app/api/render?drive=${drive}&asli=${asli}\n`;
                 nomorUrut++;
             }
