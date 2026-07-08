@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Arsip Viewer</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: sans-serif; }
+        iframe { border: none; width: 100%; height: 100%; }
+        .loading { padding: 20px; text-align: center; font-size: 18px; color: #555; }
+    </style>
+</head>
+<body>
+
+    <div id="status" class="loading">Memuat halaman arsip...</div>
+    <iframe id="viewer" style="display:none;"></iframe>
+
+    <script>
+        // Fungsi untuk mengambil parameter 'id' dari URL (contoh: ?id=1x4lGl...)
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        const fileId = getQueryParam('id');
+
+        if (fileId) {
+            // URL Direct Stream dari Google Drive API (Pastikan file di Drive sudah di-share "Anyone with link")
+            const driveUrl = `https://docs.google.com/uc?export=view&id=${fileId}`;
+            
+            const iframe = document.getElementById('viewer');
+            const statusDiv = document.getElementById('status');
+
+            // Masukkan link Google Drive ke dalam iframe untuk di-render
+            iframe.src = driveUrl;
+            
+            iframe.onload = function() {
+                statusDiv.style.display = 'none';
+                iframe.style.display = 'block';
+            };
+        } else {
+            document.getElementById('status').innerText = "Eror: Parameter ID Google Drive tidak ditemukan.";
+        }
+    </script>
+</body>
+</html>
