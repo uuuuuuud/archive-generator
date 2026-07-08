@@ -9,7 +9,11 @@ Tahap 1: Pengarsipan Manual
 
 Tahap 2: Pengaitan URL
 - Copy URL file di Google Drive tersebut, dengan akses membaca terbuka untuk siapa saja.
-- Susun ulang tiga URL, yakni diawalai URL Aesiparis Vercel APP, URL file HTML dari Google Drive, dan URL web asli. Berikut format detailnya:
+- Convert URL-URL menjadi link arsip web gratis siap pakai di https://arsiparis-web.vercel.app/
+
+ATAU lakukan secara manual:
+  
+Susun ulang tiga URL, yakni diawalai URL Aesiparis Vercel APP, URL file HTML dari Google Drive, dan URL web asli. Berikut format detailnya:
 
 https://arsiparis-web.vercel.app/api/render?drive=URL_GOOGLE_DRIVE&asli=URL_ASLI   --   Perhatikan posisi URL_GOOGLE_DRIVE dan URL_ASLI
 
