@@ -41,6 +41,7 @@ export default async function handler(req, res) {
                     <div class="brand">ARSIP WEBSITE</div>
                     <div>
                         <a href="${decodeURIComponent(asli || '')}" target="_blank" class="btn" style="${asli ? '' : 'display:none;'}">Menuju Tautan Langsung</a>
+                        <a href="https://vercel.com/uuud/arsip-web" target="_blank" class="btn">Via Layanan Vercel</a>
                     </div>
                 </div>
                 <div class="content-container">
