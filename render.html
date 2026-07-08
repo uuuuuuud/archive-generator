@@ -2,43 +2,84 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Arsip Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsip Website Viewer</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: sans-serif; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        
+        /* Panel Atas */
+        .header-panel { background-color: #1a1a1a; color: #ffffff; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #ff4757; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 9999; position: relative; }
+        .brand { font-size: 20px; font-weight: 900; letter-spacing: 1px; color: #ff4757; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 15px; }
+        .btn { background-color: #333; color: #fff; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; transition: background 0.2s; border: 1px solid #444; }
+        .btn:hover { background-color: #ff4757; border-color: #ff4757; }
+        .btn-repo { background-color: #24292e; border-color: #3f4448; }
+        .btn-repo:hover { background-color: #2f363d; }
+        
+        /* Area Konten (Iframe) */
+        .content-container { width: 100%; height: calc(100% - 55px); position: relative; }
         iframe { border: none; width: 100%; height: 100%; }
-        .loading { padding: 20px; text-align: center; font-size: 18px; color: #555; }
+        .status-message { padding: 40px; text-align: center; font-size: 18px; color: #666; font-weight: 500; }
     </style>
 </head>
 <body>
 
-    <div id="status" class="loading">Memuat halaman arsip...</div>
-    <iframe id="viewer" style="display:none;"></iframe>
+    <!-- Panel Penanda Atas -->
+    <div class="header-panel">
+        <div class="brand">ARSIP WEBSITE</div>
+        <div class="nav-links">
+            <a id="link-asli" href="#" target="_blank" class="btn">Menuju Tautan Langsung</a>
+            <a href="https://github.com/uuuuuuud/archive-generator" target="_blank" class="btn btn-repo">Via Layanan Github</a>
+        </div>
+    </div>
+
+    <!-- Konten Arsip -->
+    <div class="content-container">
+        <div id="status" class="status-message">Memuat dokumen arsip...</div>
+        <iframe id="viewer" style="display:none;"></iframe>
+    </div>
 
     <script>
-        // Fungsi untuk mengambil parameter 'id' dari URL (contoh: ?id=1x4lGl...)
+        // Fungsi membaca parameter URL
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
 
-        const fileId = getQueryParam('id');
+        // Ekstrak ID unik dari tautan penuh Google Drive
+        function extractDriveId(url) {
+            if (!url) return null;
+            // Mendukung format /d/ID/view atau ?id=ID
+            const matches = url.match(/\/d\/([^/]+)/) || url.match(/[?&]id=([^&]+)/);
+            return matches ? matches[1] : null;
+        }
 
+        const rawDriveUrl = getQueryParam('drive');
+        const webAsliUrl = getQueryParam('asli');
+
+        const fileId = extractDriveId(rawDriveUrl);
+        const iframe = document.getElementById('viewer');
+        const statusDiv = document.getElementById('status');
+        const btnAsli = document.getElementById('link-asli');
+
+        // 1. Atur tombol link ke web asli
+        if (webAsliUrl) {
+            btnAsli.href = decodeURIComponent(webAsliUrl);
+        } else {
+            btnAsli.style.display = 'none'; // Sembunyikan jika tidak diisi
+        }
+
+        // 2. Ambil file HTML dari Drive dan masukkan ke Iframe
         if (fileId) {
-            // URL Direct Stream dari Google Drive API (Pastikan file di Drive sudah di-share "Anyone with link")
-            const driveUrl = `https://docs.google.com/uc?export=view&id=${fileId}`;
-            
-            const iframe = document.getElementById('viewer');
-            const statusDiv = document.getElementById('status');
-
-            // Masukkan link Google Drive ke dalam iframe untuk di-render
-            iframe.src = driveUrl;
+            const streamUrl = `https://docs.google.com/uc?export=view&id=${fileId}`;
+            iframe.src = streamUrl;
             
             iframe.onload = function() {
                 statusDiv.style.display = 'none';
                 iframe.style.display = 'block';
             };
         } else {
-            document.getElementById('status').innerText = "Eror: Parameter ID Google Drive tidak ditemukan.";
+            statusDiv.innerHTML = "<span style='color:#ff4757;'>Eror: Tautan Google Drive tidak valid atau tidak terbaca.</span>";
         }
     </script>
 </body>
