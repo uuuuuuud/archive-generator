@@ -29,19 +29,68 @@ export default async function handler(req, res) {
                 <title>Arsip Website Viewer</title>
                 <style>
                     body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: sans-serif; }
-                    .header-panel { background-color: #1a1a1a; color: #ffffff; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #ff4757; height: 35px; position: fixed; top: 0; left: 0; right: 0; z-index: 99999; }
-                    .brand { font-size: 20px; font-weight: 900; color: #ff4757; text-transform: uppercase; letter-spacing: 1px; }
-                    .btn { background-color: #333; color: #fff; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; border: 1px solid #444; margin-left: 10px; transition: 0.2s; }
-                    .btn:hover { background-color: #ff4757; border-color: #ff4757; }
-                    .content-container { margin-top: 62px; padding: 10px; width: 100%; box-sizing: border-box; }
+                    
+                    /* PANEL ATAS: Tebal 2x lipat (70px), Latar Abu-abu Arang, Border Oranye Tua */
+                    .header-panel { 
+                        background-color: #2f3542; 
+                        color: #ffffff; 
+                        padding: 0 30px; 
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: space-between; 
+                        border-bottom: 4px solid #b33939; 
+                        height: 70px; 
+                        position: fixed; 
+                        top: 0; 
+                        left: 0; 
+                        right: 0; 
+                        z-index: 99999; 
+                        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+                    }
+                    
+                    /* TULISAN UTAMA: Menyesuaikan jadi besar dan berwarna Oranye Terang Kontras */
+                    .brand { 
+                        font-size: 26px; 
+                        font-weight: 900; 
+                        color: #ff5252; 
+                        text-transform: uppercase; 
+                        letter-spacing: 2px; 
+                    }
+                    
+                    /* TOMBOL UTAMA */
+                    .btn { 
+                        background-color: #ff793f; 
+                        color: #fff; 
+                        padding: 12px 20px; 
+                        border-radius: 6px; 
+                        text-decoration: none; 
+                        font-size: 14px; 
+                        font-weight: 700; 
+                        border: 1px solid #cd6133; 
+                        margin-left: 12px; 
+                        transition: 0.2s; 
+                        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                    }
+                    .btn:hover { 
+                        background-color: #cd6133; 
+                        border-color: #b33939; 
+                    }
+                    
+                    /* KONTEN WEB: Jarak turun menyesuaikan ketebalan panel baru */
+                    .content-container { 
+                        margin-top: 74px; 
+                        padding: 15px; 
+                        width: 100%; 
+                        box-sizing: border-box; 
+                    }
                 </style>
             </head>
             <body>
                 <div class="header-panel">
-                    <div class="brand">ARSIP WEBSITE</div>
+                    <div class="brand">🚀 ARSIP WEBSITE</div>
                     <div>
                         <a href="${decodeURIComponent(asli || '')}" target="_blank" class="btn" style="${asli ? '' : 'display:none;'}">Menuju Tautan Langsung</a>
-                        <a href="https://vercel.com/uuud/arsip-web" target="_blank" class="btn">Via Layanan Vercel</a>
+                        <a href="https://github.com/uuuuuuud/archive-generator" target="_blank" class="btn">Gunakan Layanan Ini (Via GitHub)</a>
                     </div>
                 </div>
                 <div class="content-container">
